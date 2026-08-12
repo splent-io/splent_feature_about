@@ -16,7 +16,9 @@ import os  # noqa: F401 — used when adding env vars below
 
 
 def inject_config(app):
-    app.config.update({
-        # Add your feature's env vars here, e.g.:
-        # "ABOUT_PATH": os.getenv("ABOUT_PATH", "about"),
-    })
+    app.config.update(
+        {
+            # Add your feature's env vars here, e.g.:
+            # "ABOUT_PATH": os.getenv("ABOUT_PATH", "about"),
+        }
+    )
