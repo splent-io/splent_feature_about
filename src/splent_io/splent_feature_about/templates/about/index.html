@@ -1,0 +1,26 @@
+{% extends "public_base.html" %}
+
+{% block title %}About — {{ SPLENT_APP }}{% endblock %}
+
+{% block hero %}
+    {{ render_block('hero', eyebrow=_('The lab'), title=_('About'),
+                    subtitle=_('Who we are and what we stand for.')) }}
+{% endblock %}
+
+{% block content %}
+<div class="container section">
+    {% if sections | length > 1 %}
+    <nav aria-label="{{ _('On this page') }}" style="margin-bottom:2rem">
+        {% for s in sections %}<a href="#{{ s.slug }}" style="margin-right:1.25rem">{{ s.title }}</a>{% endfor %}
+    </nav>
+    {% endif %}
+    {% for s in sections %}
+    <section id="{{ s.slug }}">
+        <h2 class="section-title">{{ s.title }}</h2>
+        <div class="prose">{{ s.content | safe }}</div>
+    </section>
+    {% else %}
+    <p class="card__text">{{ _('No sections yet.') }}</p>
+    {% endfor %}
+</div>
+{% endblock %}

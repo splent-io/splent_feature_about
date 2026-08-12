@@ -1,0 +1,74 @@
+[build-system]
+requires = ["setuptools>=80.3.1", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "splent_feature_about"
+version = "0.0.1"
+readme = "README.md"
+requires-python = ">=3.13"
+
+dependencies = [
+
+]
+
+[tool.setuptools]
+package-dir = { "" = "src" }
+include-package-data = true
+
+[tool.setuptools.packages.find]
+where = ["src"]
+exclude = ["*.tests", "*.tests.*"]
+
+[tool.splent]
+cli_version = "1.19.0"
+
+# ── Feature Contract ──────────────────────────────────────────────────────────
+# Declares what this feature provides to and requires from the product.
+# Used by `splent feature:check` and `splent product:derive` for validation.
+[tool.splent.contract]
+description = "About the organisation page with ordered rich-text sections and admin CRUD"
+archetype = "full"
+
+[tool.splent.contract.provides]
+routes     = ["/about", "/admin/about", "/admin/about/<int:section_id>/delete", "/admin/about/<int:section_id>/edit", "/admin/about/<int:section_id>/move", "/admin/about/new"]
+blueprints = []
+models     = ["AboutSection"]
+commands   = ["hello"]
+hooks      = ["layout.authenticated_sidebar"]
+services   = ["AboutService"]
+signals    = []
+translations = ["es"]
+docker     = []
+
+[tool.splent.contract.requires]
+features = []
+env_vars = []
+signals  = []
+
+# ── Extension points ──────────────────────────────────────────────────────────
+# Declares what other features can override or extend via refinement.
+# See: splent feature:xray
+[tool.splent.contract.extensible]
+services  = ["AboutService"]
+templates = ["about/admin/form.html", "about/admin/list.html", "about/index.html"]
+models    = ["AboutSection"]
+hooks     = ["layout.authenticated_sidebar"]
+routes    = false
+
+# ── Configuration ─────────────────────────────────────────────────────────────
+# What this feature reads from the environment, and what it falls back to.
+# One line per variable, the value being the default.
+#
+# This is where a default belongs, whether or not the feature ships a
+# container: docker/.env.example only exists for features that bring a
+# service, and a setting is not infrastructure. A product overrides any of
+# these in its own [tool.splent.config]; it never copies the ones it agrees
+# with. `splent product:env --merge` and `splent product:build` both read
+# this, so dev and deploy see the same values.
+#
+# Types map to what an env file can hold: true becomes "true", a list
+# becomes a comma separated string. Keys ending in _HOST_PORT get the
+# product's port offset, so two products can run at once.
+[tool.splent.config]
+# ABOUT_EXAMPLE = "value"

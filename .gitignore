@@ -1,0 +1,53 @@
+# Environment variables
+.env
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.egg-info
+
+# PyCharm / JetBrains IDE files
+.idea/
+
+# VS Code files
+.vscode
+
+# Log files
+app.log
+app.log.*
+
+# macOS system files
+.DS_Store
+
+# Build artifacts and distribution directories
+build/
+dist/
+
+# Webpack bundles and source maps
+*.bundle.js
+*.bundle.js.map
+*.map
+
+# Coverage reports
+.coverage
+htmlcov/
+
+# pytest cache
+.pytest_cache/
+
+# Virtual environments
+venv/
+.venv/
+
+# Temporary files for testing and deployment
+uploads
+.version
+deployments.log
+
+# Node.js dependencies
+node_modules/
+
+# Compiled translations are NOT ignored. gettext reads .mo and only .mo,
+# and a released feature is a git tag and a wheel built from it, neither of
+# which runs feature:translate --compile. Ignoring them shipped every
+# feature untranslated: the .po travelled, nothing read it, and the product
+# answered in English while the workspace it was built in looked translated.

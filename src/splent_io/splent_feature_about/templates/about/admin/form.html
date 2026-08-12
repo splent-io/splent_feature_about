@@ -1,0 +1,40 @@
+{% extends "base_template.html" %}
+
+{% block title %}{{ 'Edit section' if section else 'Add section' }}{% endblock %}
+
+{% block content %}
+<div class="d-flex flex-column align-items-start gap-2 mb-4">
+    <h1 class="h3 mb-0">{{ 'Edit section' if section else 'Add section' }}</h1>
+    <a href="{{ url_for('about.admin_index') }}" class="btn btn-outline-secondary">← Back to sections</a>
+</div>
+
+<form method="POST" class="card">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    <div class="card-body">
+        <div class="row g-3">
+            <div class="col-md-6">
+                <label class="form-label">Title *</label>
+                <input name="title" class="form-control" required value="{{ section.title if section else '' }}">
+            </div>
+            <div class="col-md-3">
+                <label class="form-label">Order</label>
+                <input name="order" type="number" class="form-control" value="{{ section.order if section else 0 }}">
+            </div>
+            <div class="col-md-3 d-flex align-items-end">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="published" id="published" {{ 'checked' if (section.published if section else True) else '' }}>
+                    <label class="form-check-label" for="published">Published</label>
+                </div>
+            </div>
+            <div class="col-12">
+                <label class="form-label">Content (HTML)</label>
+                <textarea name="content" class="form-control font-monospace" rows="18">{{ section.content if section else '' }}</textarea>
+            </div>
+        </div>
+    </div>
+    <div class="card-footer text-end">
+        <a href="{{ url_for('about.admin_index') }}" class="btn btn-link text-muted">Cancel</a>
+        <button class="btn btn-primary" type="submit">{{ 'Save changes' if section else 'Add section' }}</button>
+    </div>
+</form>
+{% endblock %}
