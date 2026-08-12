@@ -1,5 +1,3 @@
-import re
-
 from flask import (
     flash,
     redirect,
@@ -13,6 +11,7 @@ from splent_io.splent_feature_about import about_bp
 from splent_io.splent_feature_about.models import AboutSection
 from splent_framework.db import db
 from splent_framework.services.service_locator import service_proxy
+from splent_framework.utils.text import slugify
 
 about_service = service_proxy("AboutService")
 
@@ -30,8 +29,7 @@ def index():
 # ADMIN — domain-specific management (the "plugin" screen)
 # =====================================================================
 def _slugify(value):
-    base = re.sub(r"[^a-z0-9]+", "-", (value or "").lower()).strip("-")
-    return base or "section"
+    return slugify(value) or "section"
 
 
 def _unique_slug(title, exclude_id=None):
