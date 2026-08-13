@@ -63,7 +63,9 @@ routes    = false
 # This is where a default belongs, whether or not the feature ships a
 # container: docker/.env.example only exists for features that bring a
 # service, and a setting is not infrastructure. A product overrides any of
-# these in its own [tool.splent.config]; it never copies the ones it agrees
+# these in its own [tool.splent.config]
+# Main-nav label. Empty keeps the default "About".
+ABOUT_NAV_LABEL = ""; it never copies the ones it agrees
 # with. `splent product:env --merge` and `splent product:build` both read
 # this, so dev and deploy see the same values.
 #

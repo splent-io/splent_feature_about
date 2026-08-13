@@ -16,6 +16,10 @@ import os  # noqa: F401 — used when adding env vars below
 
 
 def inject_config(app):
+    # Main-nav label for this feature. Empty keeps the default "About".
+    app.config.setdefault(
+        "ABOUT_NAV_LABEL", os.getenv("ABOUT_NAV_LABEL", "").strip()
+    )
     app.config.update(
         {
             # Add your feature's env vars here, e.g.:

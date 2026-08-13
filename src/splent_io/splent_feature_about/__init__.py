@@ -12,7 +12,8 @@ def init_feature(app):
     # hooks.py) — the WordPress-plugin pattern — instead of the generic admin
     # resource, so it does not call register_admin_resource.
     register_service(app, "AboutService", AboutService)
-    register_nav_item(key="about", label="About", href="/about", order=10)
+    label = app.config.get("ABOUT_NAV_LABEL", "") or "About"
+    register_nav_item(key="about", label=label, href="/about", order=10)
 
 
 def inject_context_vars(app):
