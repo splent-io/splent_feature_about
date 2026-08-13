@@ -14,7 +14,6 @@ recursive-include src/splent_io/splent_feature_about/assets *.woff *.woff2 *.ttf
 prune src/splent_io/splent_feature_about/assets/node_modules
 
 # Bundled seed images imported through the media feature at db:seed time.
-recursive-include src/splent_io/splent_feature_about/seed_media *.svg *.png *.jpg *.jpeg *.gif *.webp
 
 # Jinja templates (feature views + hook fragments)
 recursive-include src/splent_io/splent_feature_about/templates *.html
